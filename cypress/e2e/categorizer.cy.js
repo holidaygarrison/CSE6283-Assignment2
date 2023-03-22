@@ -82,6 +82,6 @@ describe('Test Obese', () => {
 	})
 
 	it('Test Mid Point', () => {
-		cy.window().then(win => win.CatBMI('35')).should('eq', 'Obese')
+		cy.window().then(win => win.CatBMI('35.0')).should('eq', 'Obese')
 	})
 })

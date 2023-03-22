@@ -4,26 +4,14 @@ describe('Test BMI Calculator', () => {
 	})
 
 	it('Test Lower Extremes', () => {
-		cy.get('#Weight').type('50')
-		cy.get('#Height').type('20')
-		cy.contains('Submit').click()
-
-		cy.contains('BMI:90.0')
+		cy.window().then(win => win.CalcBMI('50.0', '20.0')).should('eq', '90.0')
 	})
 
-	it('Test Expected Weight', () => {
-		cy.get('#Weight').type('150')
-		cy.get('#Height').type('72')
-		cy.contains('Submit').click()
-
-		cy.contains('BMI:20.8')
+	it('Test Expected', () => {
+		cy.window().then(win => win.CalcBMI('150', '72')).should('eq', '20.8')
 	})
 
 	it('Test Higher Extremes', () => {
-		cy.get('#Weight').type('1000')
-		cy.get('#Height').type('96')
-		cy.contains('Submit').click()
-
-		cy.contains('BMI:78.1')
+		cy.window().then(win => win.CalcBMI('1000', '96')).should('eq', '78.1')
 	})
 })
