@@ -1,0 +1,53 @@
+<html>
+	<head>
+	</head>
+
+	<body>
+		<div style="width:100%; padding-top:200px; text-align:center;">
+			<label for="Weight">Weight: </label>
+			<input type="number" name="Weight" id="Weight" step='0.1'>
+			LBS
+			<br><br>
+			<label for="Height">Height: </label>
+			<input type="number" name="Height" id="Height">
+			INCHES
+			<br><br>
+			<button onclick="GetBMI();">Submit</button>
+		</div>
+		<div style="width:100%; padding-top:50px; text-align:center;" id="Results">
+		</div>
+	</body>
+</html>
+
+<script>
+function GetBMI(){
+	var weight = document.getElementById("Weight").value;
+	var height = document.getElementById("Height").value;
+
+	var bmi = CalcBMI(weight, height);
+	var category = CatBMI(bmi);
+
+	document.getElementById("Results").innerHTML = "<strong>BMI:</strong>" + bmi + "<br>\n" +
+						       "<strong>" + category + "</strong>\n";
+
+}
+function CalcBMI( weight, height ){
+	var bmi = (weight * 0.45) / ( (height * 0.025)**2 );
+	bmi = bmi.toFixed(1);
+
+	return bmi;
+}
+function CatBMI( bmi ){
+	if( bmi < 18.5 ){
+	    return "Underweight";
+	} else if( bmi >= 18.6 && bmi <= 24.9 ){
+	    return "Normal Weight";
+	} else if( bmi >= 25 && bmi <= 29.9 ){
+	    return "Overweight";
+	} else if( bmi >= 30 ){
+	    return "Obese";
+	} else{
+	    return "Error";
+	}
+}
+</script>
